@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-DATABASE = 'db_teleguard.db'  # novo banco sem senha
+DATABASE = 'db_teleguard.db'
 
 def get_connection():
     base_dir = os.path.dirname(os.path.abspath(__file__))
