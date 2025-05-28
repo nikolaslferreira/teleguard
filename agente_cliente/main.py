@@ -5,12 +5,10 @@ import requests
 from utils import get_ip_address
 import subprocess
 
-# Carregar dados do config.json
 with open('config.json', 'r') as f:
     config = json.load(f)
 
-# URL do servidor Flask
-SERVIDOR_URL = 'http://127.0.0.1:5000/agente/'  # Troque pelo IP real do servidor ADM se necessário
+SERVIDOR_URL = 'http://127.0.0.1:5000/agente/'
 
 
 def enviar_requisicao():
@@ -27,7 +25,6 @@ def enviar_requisicao():
         if resposta.status_code == 200:
             messagebox.showinfo("Conectado", "Requisição enviada ao servidor com sucesso!")
 
-            # Iniciar monitoramento após aceitação
             subprocess.Popen(["python", "monitoramento.py"])
 
         else:
@@ -35,8 +32,6 @@ def enviar_requisicao():
     except Exception as e:
         messagebox.showerror("Erro", f"Erro de conexão: {str(e)}")
 
-
-# Interface Tkinter
 janela = tk.Tk()
 janela.title("Agente TeleGuard")
 janela.geometry("300x200")
