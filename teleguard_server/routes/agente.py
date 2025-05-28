@@ -84,7 +84,7 @@ def registrar_computador():
     cor = dados.get('cor')
     so = dados.get('so')
 
-    conn = sqlite3.connect(r'C:\Users\nicol\Downloads\flutter_projects\teleguard\python_teleguard\.venv\teleguard_server\db_teleguard.db')
+    conn = sqlite3.connect('db_teleguard.db')
     cursor = conn.cursor()
 
     cursor.execute("INSERT OR IGNORE INTO COMPUTADOR (IP, MARCA, COR, SO, STATUS) VALUES (?, ?, ?, ?, ?)",
@@ -97,7 +97,7 @@ def registrar_computador():
 
 @agente_bp.route('/status/<ip>', methods=['GET'])
 def verificar_status(ip):
-    conn = sqlite3.connect(r'C:\Users\nicol\Downloads\flutter_projects\teleguard\python_teleguard\.venv\teleguard_server\db_teleguard.db')
+    conn = sqlite3.connect('db_teleguard.db')
     cursor = conn.cursor()
 
     cursor.execute("SELECT STATUS FROM COMPUTADOR WHERE IP = ?", (ip,))
