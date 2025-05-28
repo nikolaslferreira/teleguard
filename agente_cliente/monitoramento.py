@@ -5,7 +5,6 @@ from mitmproxy import http, ctx, addons
 from mitmproxy.tools.main import mitmdump
 import threading
 
-# Lista de sites proibidos
 SITES_PROIBIDOS = [
     "xvideos.com",
     "pornhub.com",
@@ -14,11 +13,9 @@ SITES_PROIBIDOS = [
     "xhamster.com"
 ]
 
-# Abrir navegador Chrome (modo normal)
 def abrir_chrome():
     webbrowser.open("http://www.google.com")
 
-# Addon do mitmproxy
 class Bloqueador:
     def request(self, flow: http.HTTPFlow) -> None:
         host = flow.request.pretty_host
