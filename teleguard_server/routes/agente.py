@@ -64,7 +64,6 @@ def receber_requisicao():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
-    # Inserir ou atualizar a máquina como pendente
     cursor.execute("""
         INSERT INTO COMPUTADOR (IP_SERV, MARCA_COMP, SO_COMP, COR_COMP, STATUS_CONEXAO)
         VALUES (?, ?, ?, ?, 'pendente')
