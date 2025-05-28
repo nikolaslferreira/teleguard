@@ -15,27 +15,22 @@ def login():
     cursor = conn.cursor()
 
     try:
-        # Verifica funcionário
         cursor.execute("SELECT ID_FUNC, NOME_FUNC FROM FUNCIONARIO WHERE RG_FUNC = ? AND SENHA = ?", (rg, senha))
         result = cursor.fetchone()
 
         if result:
             id_func, nome_func = result
 
-            # Captura data/hora atual
             agora = datetime.now()
             data_atual = agora.strftime('%Y-%m-%d')
             hora_atual = agora.strftime('%H:%M:%S')
 
-            # IP do servidor local
             ip_serv = socket.gethostbyname(socket.gethostname())
 
-            # Verifica se IP já está na tabela SERVIDOR
             cursor.execute("SELECT * FROM SERVIDOR WHERE IP_SERV = ?", (ip_serv,))
             servidor_existente = cursor.fetchone()
 
             if not servidor_existente:
-                # Registra novo servidor com hora e data de início
                 cursor.execute(
                     """INSERT INTO SERVIDOR 
                        (IP_SERV, DATA_INIC, HORA_INIC, DATA_TERM, HORA_TERM, ID_FUNC) 
@@ -44,7 +39,6 @@ def login():
                 )
                 print(f"Novo servidor registrado com IP: {ip_serv}")
 
-            # Registra o login
             cursor.execute(
                 """INSERT INTO LOGIN (ID_FUNC, IP_SERV, DATA_LOGIN, HORA_LOGIN)
                    VALUES (?, ?, ?, ?)""",
