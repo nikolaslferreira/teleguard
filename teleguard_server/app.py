@@ -10,12 +10,10 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Configurações do banco
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db_teleguard.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'chave_super_secreta'
 
-# Registrar Blueprints
 app.register_blueprint(computers_bp, url_prefix="/api/computers")
 app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(agente_bp, url_prefix="/agente")
